@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Dates;
+use App\Topic;
 use Illuminate\Http\Request;
 
-class DatesController extends Controller
+class TopicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class DatesController extends Controller
      */
     public function index()
     {
-        //
+        return Topic::all();
     }
 
     /**
@@ -41,10 +41,10 @@ class DatesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dates  $dates
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function show(Dates $dates)
+    public function show(Topic $topic)
     {
         //
     }
@@ -52,10 +52,10 @@ class DatesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Dates  $dates
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Dates $dates)
+    public function edit(Topic $topic)
     {
         //
     }
@@ -64,10 +64,10 @@ class DatesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dates  $dates
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dates $dates)
+    public function update(Request $request, Topic $topic)
     {
         //
     }
@@ -75,10 +75,10 @@ class DatesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dates  $dates
+     * @param  \App\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dates $dates)
+    public function destroy(Topic $topic)
     {
         //
     }

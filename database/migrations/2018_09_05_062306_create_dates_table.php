@@ -16,16 +16,23 @@ class CreateDatesTable extends Migration
         Schema::create('dates', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('length');
-            $table->dataTime('dateTime');
+            $table->date('dateTime');
             $table->integer('user_id')->unsigned();
+            $table->integer('payment_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-        });
 
         $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+
+        $table->foreign('payment_id')
+            ->references('id')
+            ->on('dates')
+            ->onDelete('cascade');
+
+        });
     }
 
     /**
