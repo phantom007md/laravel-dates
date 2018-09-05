@@ -2,6 +2,12 @@
 
 return [
 
+    'zarinpal' => [
+        'merchantID' => env('ZARINPAL_MERCHANT_ID'),
+        'zarinGate' => env('ZARINPAL_GATE'),
+        'sandbox' => env('ZARINPAL_SANDBOX'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

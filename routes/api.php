@@ -17,8 +17,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/payments', 'PaymentController@index')->name('payments.index');
+Route::post('/payments/pay', 'PaymentController@pay')->name('payments.pay');
+Route::get('/payments/verify', 'PaymentController@verify')->name('payments.verify');
+
 Route::apiResources([
-    'payments' => 'PaymentController',
     'dates' => 'DateController',
     'users' => 'UserController',
     'topics' => 'TopicController',
