@@ -46,7 +46,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        return $topic;
     }
 
     /**
