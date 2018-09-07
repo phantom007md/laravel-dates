@@ -14,7 +14,8 @@ class DateController extends Controller
      */
     public function index()
     {
-        return Date::all();
+        // return Payment::where('status', 'success')
+        // return Date::where('payment_id', '!=', null);
     }
 
     /**

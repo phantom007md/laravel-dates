@@ -18,7 +18,7 @@ class CreateDatesTable extends Migration
             $table->integer('length');
             $table->date('dateTime');
             $table->integer('user_id')->unsigned();
-            $table->integer('payment_id')->unsigned();
+            $table->integer('payment_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
 
