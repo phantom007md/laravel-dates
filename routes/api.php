@@ -24,8 +24,9 @@ Route::get('/payments', 'PaymentController@index')->name('payments.index');
 Route::post('/payments/pay', 'PaymentController@pay')->name('payments.pay');
 Route::get('/payments/verify', 'PaymentController@verify')->name('payments.verify');
 
+//Route::post('dates/toggleStatus', 'DateController@toggle');
+
 Route::apiResources([
     'dates' => 'DateController',
-    'users' => 'UserController',
     'topics' => 'TopicController',
 ]);
