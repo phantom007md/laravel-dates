@@ -10,9 +10,9 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Date ()
+    public function date ()
     {
-        return $this->belongsTo(Date::class);
+        return $this->hasOne(Date::class);
     }
 }
 

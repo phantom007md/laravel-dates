@@ -12,7 +12,12 @@ class Date extends Model
 
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->belongsTo(Payment::class);
+    }
+
+    public function topic ()
+    {
+        return $this->belongsTo(Topic::class);
     }
 
 }
