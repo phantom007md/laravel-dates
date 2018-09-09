@@ -77,8 +77,8 @@ class PaymentController extends Controller
                 'user_id' => $payment->user_id,
                 'payment_id' => $payment->id,
             ]);
-            return redirect('http://localhost:3000')->with('message', 'success');
+            return redirect('http://localhost:3000?status=ok');
         }
-        return redirect('http://localhost:3000')->cookie('message', 'failed');
+        return redirect('http://localhost:3000?status=failed');
     }
 }
