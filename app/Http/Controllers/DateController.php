@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Date;
 use App\User;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use function response;
 
@@ -22,9 +23,13 @@ class DateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         return Date::with('user', 'payment', 'topic')->get();
+//        return [
+////            'next' => Date::where('dateTime', new DateTime('tomorrow'))->with('user', 'payment', 'topic')->get(),
+//            'myPrevious' =>  Date::with('user', 'payment', 'topic')->get(),
+//        ];
     }
 
     /**
@@ -96,11 +101,11 @@ class DateController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Date $date
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function destroy(Date $date, Request $request)
     {
-        return $request->all();
         if (User::find($request->user_id)->isAdmin) {
             if ($date->delete()) {
                 return 'deleted';

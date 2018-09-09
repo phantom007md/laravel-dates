@@ -11,13 +11,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 use function redirect;
+use function response;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
 class PaymentController extends Controller
 {
     public function index()
     {
-        return Payment::all();
+//        return Payment::all();
     }
 
     public function pay(Request $request)
@@ -76,10 +77,8 @@ class PaymentController extends Controller
                 'user_id' => $payment->user_id,
                 'payment_id' => $payment->id,
             ]);
-            return redirect('http://localhost:3000?status=ok');
+            return redirect('http://localhost:3000')->with('message', 'success');
         }
-        return redirect('http://localhost:3000?status=failed');
-
-
+        return redirect('http://localhost:3000')->cookie('message', 'failed');
     }
 }
