@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Mockery\Exception;
 use function redirect;
 use function response;
+use function session;
 use Zarinpal\Laravel\Facade\Zarinpal;
 
 class PaymentController extends Controller
@@ -30,6 +31,8 @@ class PaymentController extends Controller
 
         $topic_basePrice = Topic::find($request->topic_id)->basePrice;
         $pay_price = floor($request->horses * $topic_basePrice);
+
+        session(['uri' => $request->uri]);
 
         $results = Zarinpal::request(
             route('payments.verify'),
@@ -57,7 +60,7 @@ class PaymentController extends Controller
             }
             return ['redirect' => 'https://www.zarinpal.com/pg/StartPay/' . $results['Authority']];
         } else {
-            return 'failed';
+            return ['redirect' => session('uri').'?status=failed'];
         }
     }
 
@@ -77,8 +80,8 @@ class PaymentController extends Controller
                 'user_id' => $payment->user_id,
                 'payment_id' => $payment->id,
             ]);
-            return redirect('http://localhost:3000?status=ok');
+            return redirect(session('uri')."?status=ok");
         }
-        return redirect('http://localhost:3000?status=failed');
+        return redirect(session('uri')."?status=failed");
     }
 }
