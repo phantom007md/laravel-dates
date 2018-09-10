@@ -8,21 +8,12 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/assets/css/persian-datepicker.min.css">
-  <title>Save your Dates</title>
-  <style>
-    .box{
-        margin-top: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-  </style>
+  <title>Dates Application</title>
+  <link href="/static/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <div class="box">
-        <h3>Powered by Laravel </h3>
-        <h4>mohamad.d007@gmail.com</h4>
-    </div>
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="datesWrapper"></div>
+<script type="text/javascript" src="/static/js/main.js"></script>
 </body>
 </html>
