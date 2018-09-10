@@ -25,11 +25,16 @@ class DateController extends Controller
      */
     public function index(Request $request)
     {
-        return Date::with('user', 'payment', 'topic')->get();
-//        return [
-////            'next' => Date::where('dateTime', new DateTime('tomorrow'))->with('user', 'payment', 'topic')->get(),
-//            'myPrevious' =>  Date::with('user', 'payment', 'topic')->get(),
-//        ];
+//        $request->validate();
+
+        /**
+         * this data will return with:
+         * ::where(start_date > date::tomorrow)->orWhere(date.user_id = $request->user_id)->orderBy(start_date)
+         * and if $request->myPrevDates === true we use the orWhere above
+         */
+
+
+        return Date::with('user', 'payment', 'topic')->orderBy('created_at')->get();
     }
 
     /**
@@ -84,13 +89,13 @@ class DateController extends Controller
      */
     public function update(Request $request, Date $date)
     {
-        if($request->type === 'toggleStatus') {
+        if ($request->type === 'toggleStatus') {
             if (User::find($request->user_id)->isAdmin) {
                 $date->active = !$date->active;
                 $date->save();
                 return $date;
             }
-        }elseif($request->type=== 'edit') {
+        } elseif ($request->type === 'edit') {
 
         }
 

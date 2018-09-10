@@ -24,6 +24,13 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
+        $request->validate([
+            'user_id' => 'integer|required',
+            'topic_id' => 'integer|required',
+            'horses' => 'integer|required',
+            'uri' => 'required',
+//            'start_date' => 'required',
+        ]);
 
         $user = User::find($request->user_id);
 
