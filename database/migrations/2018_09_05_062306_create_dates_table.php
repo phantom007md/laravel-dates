@@ -16,7 +16,7 @@ class CreateDatesTable extends Migration
         Schema::create('dates', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('length');
-            $table->string('start_date');
+            $table->string('dateTime');
             $table->boolean('active')->default(false);
             $table->integer('user_id')->unsigned();
             $table->integer('topic_id')->unsigned();

@@ -15,14 +15,14 @@ class DatesTableSeeder extends Seeder
         DB::table('dates')->insert([
             [
                 'length' => 20,
-                'start_date' => new DateTime('now'),
+                'dateTime' => new DateTime('now'),
                 'user_id' => 1,
                 'topic_id' => 1,
                 'payment_id' => 1,
             ],
             [
                 'length' => 40,
-                'start_date' => new DateTime('tomorrow'),
+                'dateTime' => new DateTime('tomorrow'),
                 'user_id' => 1,
                 'topic_id' => 1,
                 'payment_id' => 1,

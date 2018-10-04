@@ -33,7 +33,6 @@ class DateController extends Controller
          * and if $request->myPrevDates === true we use the orWhere above
          */
 
-
         return Date::with('user', 'payment', 'topic')->orderBy('created_at')->get();
     }
 

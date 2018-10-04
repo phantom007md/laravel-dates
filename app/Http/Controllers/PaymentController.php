@@ -17,6 +17,15 @@ use Zarinpal\Laravel\Facade\Zarinpal;
 
 class PaymentController extends Controller
 {
+    public function calcPayPrice($code, $price)
+    {
+        if ($discount = Discount::where('code', $code)->get()->first()) {
+            $pay_price = $discount->calc($price);
+            if ($pay_price) return $pay_price;
+        }
+        return $pay_price = $price;
+    }
+
     public function index()
     {
 //        return Payment::all();
@@ -34,10 +43,10 @@ class PaymentController extends Controller
 
         $user = User::find($request->user_id);
 
-//        the dsicount scenario will effect the $pay_price var
 
         $topic_basePrice = Topic::find($request->topic_id)->basePrice;
-        $pay_price = floor($request->horses * $topic_basePrice);
+        $price = floor($request->horses * $topic_basePrice);
+        $pay_price = $this->calcPayPrice($request->discount, $price);
 
         session(['uri' => $request->uri]);
 
@@ -53,10 +62,11 @@ class PaymentController extends Controller
             'amount' => $pay_price,
             'length' => $request->horses,
             'user_id' => $request->user_id,
+            'discount' => $request->discount,
             'authority' => $results['Authority'],
             'user_id' => $user['id'],
             'topic_id' => $request->topic_id,
-            'start_date' => $request->start_date,
+            'dateTime' => $request->dateTime,
         ]);
 
 //        return Zarinpal::redirect();
@@ -67,7 +77,7 @@ class PaymentController extends Controller
             }
             return ['redirect' => 'https://www.zarinpal.com/pg/StartPay/' . $results['Authority']];
         } else {
-            return ['redirect' => session('uri').'?status=failed'];
+            return ['redirect' => session('uri') . '?status=failed'];
         }
     }
 
@@ -82,13 +92,16 @@ class PaymentController extends Controller
         if ($result['Status'] === 'success') {
             Date::create([
                 'length' => $payment->length,
-                'start_date' => $payment->start_date,
+                'dateTime' => $payment->dateTime,
                 'topic_id' => $payment->topic_id,
                 'user_id' => $payment->user_id,
                 'payment_id' => $payment->id,
             ]);
-            return redirect(session('uri')."?status=ok");
+            if ($discount = Discount::where('code', $payment->discount)->get()->first()) {
+                $discount->use();
+            };
+            return redirect(session('uri') . "?status=ok");
         }
-        return redirect(session('uri')."?status=failed");
+        return redirect(session('uri') . "?status=failed");
     }
 }

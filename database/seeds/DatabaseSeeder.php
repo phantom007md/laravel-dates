@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             TopicsTableSeeder::class,
             UsersTableSeeder::class,
             DatesTableSeeder::class,
+            DiscountsTableSeeder::class,
         ]);
     }
 }

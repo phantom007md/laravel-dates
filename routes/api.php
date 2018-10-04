@@ -29,4 +29,5 @@ Route::get('/payments/verify', 'PaymentController@verify')->name('payments.verif
 Route::apiResources([
     'dates' => 'DateController',
     'topics' => 'TopicController',
+    'discounts' => 'DiscountController',
 ]);

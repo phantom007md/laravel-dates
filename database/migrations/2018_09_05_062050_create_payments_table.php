@@ -17,8 +17,9 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('amount');
             $table->integer('length');
-            $table->string('start_date');
+            $table->string('dateTime');
             $table->integer('user_id')->unsigned();
+            $table->string('discount');
             $table->integer('topic_id')->unsigned();
             $table->string('authority')->unique();
             $table->string('status')->nullable();
