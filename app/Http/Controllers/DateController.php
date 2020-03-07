@@ -6,6 +6,7 @@ use App\Date;
 use App\User;
 use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use function response;
 
 class DateController extends Controller

@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 Route::post('/register/login', 'RegisterController@login')->name('register.login');
 Route::post('/register/store', 'RegisterController@store')->name('register.store');
@@ -23,8 +24,6 @@ Route::post('/register/store', 'RegisterController@store')->name('register.store
 Route::get('/payments', 'PaymentController@index')->name('payments.index');
 Route::post('/payments/pay', 'PaymentController@pay')->name('payments.pay');
 Route::get('/payments/verify', 'PaymentController@verify')->name('payments.verify');
-
-//Route::post('dates/toggleStatus', 'DateController@toggle');
 
 Route::apiResources([
     'dates' => 'DateController',
